@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Validasi Password</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <form id="crudForm" onsubmit="return validateForm()">
+        <h2>Formulir CRUD</h2>
+        <div class="form-group">
+          <label for="nama">Nama Lengkap</label>
+          <span class="separator">:</span>
+          <input type="text" id="nama" name="nama" required />
+        </div>
+
+        <div class="form-group">
+          <label for="alamat">Alamat</label>
+          <span class="separator">:</span>
+          <input type="text" id="alamat" name="alamat" required />
+        </div>
+
+        <div class="form-group">
+          <label for="tptLahir">Tempat Lahir</label>
+          <span class="separator">:</span>
+          <input type="text" id="tptLahir" name="tptLahir" required />
+        </div>
+
+        <div class="form-group">
+          <label for="tglLahir">Tanggal Lahir</label>
+          <span class="separator">:</span>
+          <input type="date" id="tglLahir" name="tglLahir" required />
+        </div>
+
+        <div class="form-group">
+          <label>Jenis Kelamin</label>
+          <span class="separator">:</span>
+          <div class="radio-group">
+            <input type="radio" id="jkLaki" name="jk" value="laki-laki" required />Laki-laki
+            <input type="radio" id="jkPerempuan" name="jk" value="perempuan" required />Perempuan
+          </div>
+        </div>
+
+        <input type="submit" value="Simpan" />
+      </form>
+    </div>
+
+    <div class="container">
+      <table class="table1" id="dataTable">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Nama</th>
+            <th>Alamat</th>
+            <th>Tempat Lahir</th>
+            <th>Tanggal Lahir</th>
+            <th>Jenis Kelamin</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Data akan ditambahkan di sini -->
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      let data = [];
+      let currentIndex = -1;
+
+      function validateForm() {
+        let inputNama = document.getElementById("nama").value;
+        let pola = /^[a-zA-Z' ]+$/;
+        if (!pola.test(inputNama)) {
+          alert("Nama hanya boleh diisi dengan huruf dan tanda petik satu(')");
+          return false;
+        }
+        alert("Nama valid");
+        return true;
+      }
+
+      document.getElementById("crudForm").onsubmit = function(event) {
+        event.preventDefault();
+        if (validateForm()) {
+          const nama = document.getElementById("nama").value;
+          const alamat = document.getElementById("alamat").value;
+          const tptLahir = document.getElementById("tptLahir").value;
+          const tglLahir = document.getElementById("tglLahir").value;
+          const jk = document.querySelector('input[name="jk"]:checked').value;
+
+          if (currentIndex === -1) {
+            data.push({ nama, alamat, tptLahir, tglLahir, jk });
+          } else {
+            data[currentIndex] = { nama, alamat, tptLahir, tglLahir, jk };
+            currentIndex = -1;
+          }
+
+          renderTable();
+          document.getElementById("crudForm").reset();
+        }
+      };
+
+      function renderTable() {
+        const tbody = document.getElementById("dataTable").getElementsByTagName("tbody")[0];
+        tbody.innerHTML = "";
+        data.forEach((item, index) => {
+          const row = tbody.insertRow();
+          row.insertCell(0).innerText = index + 1;
+          row.insertCell(1).innerText = item.nama;
+          row.insertCell(2).innerText = item.alamat;
+          row.insertCell(3).innerText = item.tptLahir;
+          row.insertCell(4).innerText = item.tglLahir;
+          row.insertCell(5).innerText = item.jk;
+          const actionCell = row.insertCell(6);
+          actionCell.innerHTML = `<button onclick="editData(${index})">Edit</button> <button onclick="deleteData(${index})">Hapus</button>`;
+        });
+      }
+
+      function editData(index) {
+        currentIndex = index;
+        const item = data[index];
+        document.getElementById("nama").value = item.nama;
+        document.getElementById("alamat").value = item.alamat;
+        document.getElementById("tptLahir").value = item.tptLahir;
+        document.getElementById("tglLahir").value = item.tglLahir;
+        document.querySelector(`input[name="jk"][value="${item.jk}"]`).checked = true;
+      }
+
+      function deleteData(index) {
+        data.splice(index, 1);
+        renderTable();
+      }
+    </script>
+  </body>
+</html>
