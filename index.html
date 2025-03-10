@@ -1,42 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Profil Saya</title>
+    <title>Portfolio Tailwind CSS</title>
+    <link href="./public/src/output.css" rel="stylesheet" />
   </head>
   <body>
-    <header>
-      <h1>Naufal Ferdiansyah</h1>
-      <nav>
-        <ul>
-          <li><a href="#tentang">Tentang Saya</a></li>
-          <li><a href="#kontak">Kontak</a></li>
-        </ul>
-      </nav>
-    </header>
-    <section id="tentang">
-      <h2>Profil Singkat</h2>
-      <p>
-        Saya adalah seorang mahasiswa sistem informasi. Saya tertarik dengan
-        pengembangan website menggunakan laravel
-      </p>
-      <img src="profil.jpg" alt="Foto Naufal" style="max-width: 200px" />
+    <section id="home" class="pt-36">
+      <div class="container">
+        <div class="flex flex-wrap">
+          <div class="w-full self-center px-4">
+            <h1 class="text-base font-semibold text-teal-500">
+              Halo semua, saya
+              <span class="block font-bold text-slate-900"
+                >Achmad Naufal Ferdiansyah</span
+              >
+            </h1>
+            <h2>Mahasiswa</h2>
+            <p class="mb-10">Bootstrap better</p>
+            <a href="#" class="text-base font-semibold text-white bg-emerald-600 py-3 px-8 rounded-full hover:shadow-lg hover:opacity-80 transition duration-300 ease-in-out">
+              Hubungi Saya
+            </a>
+            <div class="w-full self-end px-4">
+              <div class="relative mt-10">
+                  <img src="public/img/OIP__3_-removebg-preview.png" alt="Sandhika Galih" class="mx-auto w-[20%] h-auto relative z-10" />
+                  <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 z-0">
+                      <svg width="400" height="400" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                              fill="#14b8a6"
+                              d="M47.4,-51C59.2,-35.6,65.1,-17.8,63.4,-1.7C61.7,14.5,52.6,28.9,40.8,36.6C28.9,44.2,14.5,45,-2,47C-18.4,49,-36.8,52.1,-45.4,44.5C-53.9,36.8,-52.5,18.4,-51.2,1.3C-49.9,-15.8,-48.7,-31.7,-40.2,-47.1C-31.7,-62.4,-15.8,-77.3,1,-78.3C17.8,-79.2,35.6,-66.3,47.4,-51Z"
+                              transform="translate(100 100) scale(1.1)"
+                          />
+                      </svg>
+                  </span>
+              </div>
+          </div>
+          </div>
+        </div>
+      </div>
     </section>
-    <aside>
-      <h3>Aktivitas Terbaru</h3>
-      <ul>
-        <li>Merilis artikel tentang HTML5</li>
-        <li>Berpartisipasi dalam konferensi IT tahunan</li>
-        <li>Menjadi pembicara webinar tentang keamanan web</li>
-      </ul>
-    </aside>
-    <footer id="kontak">
-      <p>
-        Hubungi saya melalui surel:
-        <a href="mailto:nambi@domain.com">naufansyah31@gmail.com</a>
-      </p>
-      <p>Hak Cipta (c) 2025 Naufal Ferdiansyah</p>
-    </footer>
   </body>
 </html>
